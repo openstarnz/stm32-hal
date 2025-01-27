@@ -26,7 +26,8 @@ stm32f4 = { version = "0.15.1", optional = true }
 stm32l4 = { version = "0.15.1", optional = true }
 stm32l5 = { version = "0.15.1", optional = true }
 stm32g0 = { version = "0.15.1", optional = true }
-stm32g4 = { version = "0.15.1", optional = true }
+#stm32g4 = { version = "0.15.1", optional = true }
+stm32g4 = { path = "../stm32-rs/stm32g4", optional = true }
 #stm32h5 = { version = "0.15.1", optional = true }
 #stm32h5 = { path = "../../Desktop/h5_pac/stm32-rs/stm32h5", optional = true }
 stm32h7 = { version = "0.15.1", optional = true }
@@ -77,6 +78,7 @@ targets = ["thumbv7em-none-eabihf"]
 # Compile with one of these "runtime" features if the program
 # will be directly flashed to an MCU; ie not a library.
 [features]
+default =["g4rt", "g474"]
 f3rt = ["stm32f3/rt"]
 f4rt = ["stm32f4/rt"]
 l4rt = ["stm32l4/rt"]
@@ -195,7 +197,6 @@ h7 = []
 #wb = ["bit_field", "stm32-device-signature", "heapless", "byteorder", "bbqueue"]
 wb = []
 wl = []
-
 
 #[package.metadata.docs.rs]
 #features = ["h7rt", "h743v", "can_fd_h", "usbotg_hs"]

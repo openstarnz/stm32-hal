@@ -55,9 +55,9 @@ macro_rules! rcc_en_reset {
                 $rcc.apb1rstr.modify(|_, w| w.[<$periph rst>]().set_bit());
                 $rcc.apb1rstr.modify(|_, w| w.[<$periph rst>]().clear_bit());
             } else if #[cfg(any(feature = "l4", feature = "l5", feature = "g4", feature = "wb", feature = "wl"))] {
-                $rcc.apb1enr1.modify(|_, w| w.[<$periph en>]().set_bit());
-                $rcc.apb1rstr1.modify(|_, w| w.[<$periph rst>]().set_bit());
-                $rcc.apb1rstr1.modify(|_, w| w.[<$periph rst>]().clear_bit());
+                $rcc.apb1enr1().modify(|_, w| w.[<$periph en>]().set_bit());
+                $rcc.apb1rstr1().modify(|_, w| w.[<$periph rst>]().set_bit());
+                $rcc.apb1rstr1().modify(|_, w| w.[<$periph rst>]().clear_bit());
             } else if #[cfg(feature = "g0")] {
                 $rcc.apbenr1.modify(|_, w| w.[<$periph en>]().set_bit());
                 $rcc.apbrstr1.modify(|_, w| w.[<$periph rst>]().set_bit());
@@ -79,9 +79,9 @@ macro_rules! rcc_en_reset {
                 $rcc.apbrstr2.modify(|_, w| w.[<$periph rst>]().set_bit());
                 $rcc.apbrstr2.modify(|_, w| w.[<$periph rst>]().clear_bit());
             } else {
-                $rcc.apb2enr.modify(|_, w| w.[<$periph en>]().set_bit());
-                $rcc.apb2rstr.modify(|_, w| w.[<$periph rst>]().set_bit());
-                $rcc.apb2rstr.modify(|_, w| w.[<$periph rst>]().clear_bit());
+                $rcc.apb2enr().modify(|_, w| w.[<$periph en>]().set_bit());
+                $rcc.apb2rstr().modify(|_, w| w.[<$periph rst>]().set_bit());
+                $rcc.apb2rstr().modify(|_, w| w.[<$periph rst>]().clear_bit());
             }
         }}
     };
@@ -103,9 +103,9 @@ macro_rules! rcc_en_reset {
                 $rcc.ahbrstr.modify(|_, w| w.[<$periph rst>]().set_bit());
                 $rcc.ahbrstr.modify(|_, w| w.[<$periph rst>]().clear_bit());
             } else {
-                $rcc.ahb1enr.modify(|_, w| w.[<$periph en>]().set_bit());
-                $rcc.ahb1rstr.modify(|_, w| w.[<$periph rst>]().set_bit());
-                $rcc.ahb1rstr.modify(|_, w| w.[<$periph rst>]().clear_bit());
+                $rcc.ahb1enr().modify(|_, w| w.[<$periph en>]().set_bit());
+                $rcc.ahb1rstr().modify(|_, w| w.[<$periph rst>]().set_bit());
+                $rcc.ahb1rstr().modify(|_, w| w.[<$periph rst>]().clear_bit());
             }
         }}
     };
@@ -113,9 +113,9 @@ macro_rules! rcc_en_reset {
         paste::paste! { cfg_if::cfg_if! {
             if #[cfg(feature = "placeholder")] {
             } else {
-                $rcc.ahb2enr.modify(|_, w| w.[<$periph en>]().set_bit());
-                $rcc.ahb2rstr.modify(|_, w| w.[<$periph rst>]().set_bit());
-                $rcc.ahb2rstr.modify(|_, w| w.[<$periph rst>]().clear_bit());
+                $rcc.ahb2enr().modify(|_, w| w.[<$periph en>]().set_bit());
+                $rcc.ahb2rstr().modify(|_, w| w.[<$periph rst>]().set_bit());
+                $rcc.ahb2rstr().modify(|_, w| w.[<$periph rst>]().clear_bit());
             }
         }}
     };

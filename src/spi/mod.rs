@@ -274,13 +274,13 @@ where
         // SPI_CR2 register, if DMA Tx and/or DMA Rx are used.
 
         #[cfg(not(feature = "h7"))]
-        self.regs.cr2.modify(|_, w| {
+        self.regs.cr2().modify(|_, w| {
             w.txdmaen().clear_bit();
             w.rxdmaen().clear_bit()
         });
 
         #[cfg(feature = "h7")]
-        self.regs.cfg1.modify(|_, w| {
+        self.regs.cfg1().modify(|_, w| {
             w.txdmaen().clear_bit();
             w.rxdmaen().clear_bit()
         });
@@ -307,6 +307,6 @@ where
 
     /// Print the (raw) contents of the status register.
     pub fn read_status(&self) -> u32 {
-        unsafe { self.regs.sr.read().bits() }
+        unsafe { self.regs.sr().read().bits() as u32 }
     }
 }
