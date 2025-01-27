@@ -273,7 +273,16 @@ pub use stm32g4::stm32g471 as pac;
 #[cfg(feature = "g473")]
 pub use stm32g4::stm32g473 as pac;
 #[cfg(feature = "g474")]
-pub use stm32g4::stm32g474 as pac;
+use stm32g4::stm32g474 as _pac;
+
+#[cfg(feature = "g474")]
+pub mod pac {
+    pub use crate::_pac::*;
+    pub use crate::_pac::spi1 as spi2;
+    pub use crate::_pac::spi1 as spi3;
+    pub use crate::_pac::spi1 as spi4;
+}
+
 #[cfg(feature = "g483")]
 pub use stm32g4::stm32g483 as pac;
 #[cfg(feature = "g484")]
